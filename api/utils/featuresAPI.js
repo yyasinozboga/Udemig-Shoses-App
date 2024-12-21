@@ -7,23 +7,15 @@ class featuresAPI {
 
   filter() {
     if (this.params.size) {
-      if (Array.isArray(this.params.size)) {
-        this.query = this.query.find({
-          size: { $regex: this.params.size.join("|") },
-        });
-      } else {
-        this.query = this.query.find({ size: { $regex: this.params.size } });
-      }
+      this.query = this.query.find({
+        size: { $regex: this.params.size.replaceAll(",", "|") },
+      });
     }
 
     if (this.params.color) {
-      if (Array.isArray(this.params.color)) {
-        this.query = this.query.find({
-          color: { $regex: this.params.color.join("|") },
-        });
-      } else {
-        this.query = this.query.find({ color: { $regex: this.params.color } });
-      }
+      this.query = this.query.find({
+        color: { $regex: this.params.color.replaceAll(",", "|") },
+      });
     }
 
     this.query = this.query.find(this.formattedQuery);
@@ -31,7 +23,7 @@ class featuresAPI {
   }
 
   limit() {
-    const selecteds = "name,picture,discount,price";
+    const selecteds = "name,picture,discount,price,isNew";
     this.query = this.query.select(selecteds.replaceAll(",", " "));
     return this;
   }
