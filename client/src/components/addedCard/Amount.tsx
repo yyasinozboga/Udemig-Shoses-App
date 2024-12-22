@@ -12,6 +12,9 @@ const Amount = ({ body }: { body: ShoeFromBagType }) => {
 
     onSuccess: (data) => {
       body.amount = data.amount;
+      queryClient.invalidateQueries({
+        queryKey: ["bag"],
+      });
     },
   });
 
@@ -40,7 +43,7 @@ const Amount = ({ body }: { body: ShoeFromBagType }) => {
   };
 
   return (
-    <div className="flex items-center justify-around w-[120px] border border-black rounded-lg py-2">
+    <div className="flex items-center justify-around w-[120px] border border-black rounded-lg py-1 md:py-2">
       <button name="minus" onClick={handleClick}>
         {body.amount === 1 ? (
           <img src="/trash.svg" alt="trash-svg" className="size-5" />

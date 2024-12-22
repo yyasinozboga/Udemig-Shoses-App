@@ -1,7 +1,16 @@
+import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import { Link } from "react-router-dom";
+import { getShosesFromBag } from "../../api";
 
 const Header = () => {
+  const { data } = useQuery({
+    queryKey: ["bag"],
+    queryFn: () => getShosesFromBag(),
+  });
+
+  const shoses = data?.reduce((acc, shose) => acc + shose.amount, 0);
+
   return (
     <header className="grid grid-cols-3 items-center p-3 md:p-5 lg:p-6 rounded-lg bg-white">
       <nav className="hidden md:flex items-center md:gap-5 lg:gap-10">
@@ -31,7 +40,7 @@ const Header = () => {
           to="/bag"
           className="bg-yellow size-[30px] rounded-full grid place-items-center"
         >
-          0
+          {shoses}
         </Link>
       </div>
     </header>

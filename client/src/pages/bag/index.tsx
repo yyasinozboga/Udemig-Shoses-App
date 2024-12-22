@@ -4,6 +4,7 @@ import { getShosesFromBag } from "../../api";
 import { ShoeFromBagType } from "../../types";
 import AddedCard from "../../components/addedCard";
 import Loader from "../../components/loader";
+import PayBox from "./PayBox";
 
 const Bag = () => {
   const { isPending, error, data } = useQuery<ShoeFromBagType[]>({
@@ -12,7 +13,7 @@ const Bag = () => {
   });
 
   return (
-    <div className="flex flex-wrap gap-3 mt-3">
+    <div className="flex gap-3 mt-3">
       {isPending ? (
         <Loader />
       ) : error ? (
@@ -22,7 +23,14 @@ const Bag = () => {
           Sepette Ürün Yok
         </h1>
       ) : (
-        data.map((item) => <AddedCard key={item._id} shoe={item} />)
+        <>
+          <div className="flex flex-col gap-3 w-full">
+            {data.map((item) => (
+              <AddedCard key={item._id} shoe={item} />
+            ))}
+          </div>
+          <PayBox data={data} />
+        </>
       )}
     </div>
   );

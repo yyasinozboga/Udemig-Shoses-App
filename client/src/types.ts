@@ -33,8 +33,7 @@ interface initialValues {
 }
 
 interface ShoeFromBagType extends initialValues {
-  id: string;
-  _id?: string;
+  _id: string;
 }
 
 export {

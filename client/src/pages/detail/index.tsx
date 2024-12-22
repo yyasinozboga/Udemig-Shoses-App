@@ -51,7 +51,6 @@ const Detail = () => {
               selectedSize={selectedSize}
             />
             <Button
-              id={data._id}
               name={data.name}
               price={data.price}
               discount={data.discount}

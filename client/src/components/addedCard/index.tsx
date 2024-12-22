@@ -14,11 +14,17 @@ const AddedCard = ({ shoe }: { shoe: ShoeFromBagType }) => {
   return (
     <div className="w-full rounded-lg p-3 bg-white relative">
       <div className="flex gap-3">
-        <img src={picture[0]} alt={name} className="size-32 rounded-lg" />
+        <img
+          src={picture[0]}
+          alt={name}
+          className="size-20 md:size-32 rounded-lg"
+        />
 
         <div className="flex flex-col justify-between">
           <div>
-            <h3 className="font-medium">{name}</h3>
+            <h3 className="font-medium text-nowrap text-sm md:text-lg">
+              {name}
+            </h3>
             <span>
               {color}/{size}
             </span>

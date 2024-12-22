@@ -4,7 +4,6 @@ import { addShoeToBag, getShosesFromBag, updateShoeFromBag } from "../../api";
 import { initialValues, ShoeFromBagType } from "../../types";
 
 const Button = ({
-  id,
   name,
   price,
   discount,
@@ -12,7 +11,7 @@ const Button = ({
   amount,
   size,
   color,
-}: ShoeFromBagType) => {
+}: initialValues) => {
   const queryClient = useQueryClient();
 
   const { mutate } = useMutation({
@@ -44,10 +43,36 @@ const Button = ({
 
   const handleClick = () => {
     if (size && color && data) {
-      const found = data.find((item) => item.id === id);
+      const found = data.find((item) => {
+        // console.log("Item:", item);
+        // console.log("color:", item.color, color, item.color === color);
+        // console.log(
+        //   "discount:",
+        //   item.discount,
+        //   discount,
+        //   item.discount === discount,
+        // );
+        // console.log("name:", item.name, name, item.name === name);
+        // console.log(
+        //   "picture:",
+        //   item.picture,
+        //   picture,
+        //   JSON.stringify(item.picture) === JSON.stringify(picture),
+        // );
+        // console.log("price:", item.price, price, item.price === price);
+        // console.log("size:", item.size, size, item.size === size);
 
-      const body: ShoeFromBagType = {
-        id,
+        return (
+          item.color === color &&
+          item.discount === discount &&
+          item.name === name &&
+          JSON.stringify(item.picture) === JSON.stringify(picture) &&
+          item.price === price &&
+          item.size === size
+        );
+      });
+
+      const body: initialValues = {
         name,
         price,
         discount,
@@ -58,12 +83,7 @@ const Button = ({
       };
 
       if (found) {
-        if (found.size === size && found.color === color) {
-          updateMutation.mutate({ ...found, amount: found.amount + 1 });
-        } else {
-          const { id, ...newBody } = body;
-          mutate(newBody);
-        }
+        updateMutation.mutate({ ...found, amount: found.amount + 1 });
       } else {
         mutate(body);
       }
