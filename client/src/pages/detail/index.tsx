@@ -9,6 +9,7 @@ import Color from "./Color";
 import Size from "./Size";
 import Button from "./Button";
 import Foot from "./Foot";
+import Loader from "../../components/loader";
 
 const Detail = () => {
   const { id } = useParams();
@@ -23,7 +24,7 @@ const Detail = () => {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 mt-5">
       {isPending ? (
-        <div>Loading...</div>
+        <Loader />
       ) : error ? (
         <div>Error!</div>
       ) : (
@@ -50,13 +51,14 @@ const Detail = () => {
               selectedSize={selectedSize}
             />
             <Button
+              id={data._id}
               name={data.name}
               price={data.price}
               discount={data.discount}
               picture={data.picture}
-              color={selectedColor}
-              size={selectedSize}
               amount={1}
+              size={selectedSize}
+              color={selectedColor}
             />
             <Foot description={data.description} />
           </div>

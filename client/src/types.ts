@@ -15,7 +15,14 @@ interface ShoseType {
   isNew: boolean;
 }
 
-interface initialValue {
+interface ShoeDetailType extends ShoseType {
+  color: string;
+  description: string;
+  size: string;
+  gender: string;
+}
+
+interface initialValues {
   name: string;
   picture: string[];
   discount: number;
@@ -25,21 +32,15 @@ interface initialValue {
   color: string | null;
 }
 
-interface ShoseFromBagType extends initialValue {
-  _id: string;
-}
-
-interface ShoeDetailType extends ShoseType {
-  color: string;
-  description: string;
-  size: string;
-  gender: string;
+interface ShoeFromBagType extends initialValues {
+  id: string;
+  _id?: string;
 }
 
 export {
   ParamsType,
   ShoseType,
   ShoeDetailType,
-  ShoseFromBagType,
-  initialValue,
+  ShoeFromBagType,
+  initialValues,
 };

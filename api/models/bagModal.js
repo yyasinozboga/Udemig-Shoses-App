@@ -2,6 +2,7 @@ import mongoose from "mongoose";
 
 const BagModal = mongoose.Schema(
   {
+    id: String,
     name: String,
     picture: [String],
     discount: Number,

@@ -21,7 +21,7 @@ const Size = () => {
         {numbers.map((number) => (
           <button
             key={number}
-            className={`py-2 px-4 rounded-lg ${
+            className={`w-[60px] h-[40px] rounded-lg ${
               params.has("size", number)
                 ? "bg-black text-white"
                 : "bg-white text-black"

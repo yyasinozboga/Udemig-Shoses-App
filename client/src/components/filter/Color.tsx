@@ -22,9 +22,7 @@ const Color = () => {
           <button
             key={id}
             className={`w-[60px] h-[40px] rounded-lg ${
-              params.has("color", id)
-                ? "border-4 border-blue"
-                : "border-4 border-transparent"
+              params.has("color", id) ? "ring-[4px]" : ""
             }`}
             onClick={() => handleClick(id)}
             style={{ background: code }}

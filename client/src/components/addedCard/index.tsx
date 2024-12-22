@@ -1,9 +1,9 @@
 import React from "react";
-import { ShoseFromBagType } from "../../types";
+import { ShoeFromBagType } from "../../types";
 import Amount from "./Amount";
 
-const AddedCard = ({ shoe }: { shoe: ShoseFromBagType }) => {
-  const { _id, amount, color, discount, name, picture, price, size } = shoe;
+const AddedCard = ({ shoe }: { shoe: ShoeFromBagType }) => {
+  const { color, discount, name, picture, price, size } = shoe;
 
   let newPrice = price;
 
@@ -24,7 +24,7 @@ const AddedCard = ({ shoe }: { shoe: ShoseFromBagType }) => {
             </span>
           </div>
 
-          <Amount id={_id} amount={amount} />
+          <Amount body={shoe} />
         </div>
       </div>
 
